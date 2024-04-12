@@ -38,4 +38,12 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+/*PUERTO*/
+const port = process.env.PORT || 4000;
+app.listen(port, () => {
+  console.log(`
+    Nuestra app funciona en
+    http://localhost:${port}`);
+});
+
 module.exports = app;

@@ -34,21 +34,24 @@ video {
   display: flex;
   flex-direction: row;
   align-items: center;
+  img {
+    width: 75px;
+    height: auto;
+  }
 }
 
-.logo img {
-  width: 75px;
-  height: auto;
-}
+ 
 
-.logo-text a {
-  display: inline-block;
-  text-align: center;
-  text-transform: uppercase;
-  width: 300px;
-  margin-left: 20px;
-}
+.logo-text {
 
+    a  {
+    display: inline-block;
+    text-align: center;
+    text-transform: uppercase;
+    width: 300px;
+    margin-left: 20px;
+  }
+}
 nav {
   background: #112545;
 }
@@ -56,12 +59,16 @@ nav {
 .nav-link {
   text-align: center;
   padding: 10px;
+  li {
+    display: inline-block;
+    margin-right: 60px;
+    &:last-child {
+        margin-right: 0;
+      }
+  }
 }
 
-.nav-link li {
-  display: inline-block;
-  margin-right: 60px;
-}
+
 
 .nav-link li a,
 .logo-text a {
@@ -69,10 +76,32 @@ nav {
   color: white;
   font-family: "Roboto Condensed";
 }
+/* BODY */
+main {
+    padding: 50px 60px;
+  }
+  
+  /* FOOTER */
+  footer {
+    background: #112545;
+    width: 100%;
+    padding: 10px;
+    margin-top: auto;
+  }
+  
+  .social-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .social-link {
+    color: white;
+    text-decoration: none;
+    font-size: 30px;
+    margin: 0 20px;
+  }
 
-.nav-link li:last-child {
-  margin-right: 0;
-}
 
 /* MOBILE NAVBAR */
 @media screen and (max-width: 768px) {
@@ -90,28 +119,4 @@ nav {
   }
 }
 
-/* BODY */
-main {
-  padding: 50px 60px;
-}
 
-/* FOOTER */
-footer {
-  background: #112545;
-  width: 100%;
-  padding: 10px;
-  margin-top: auto;
-}
-
-.social-media {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.social-link {
-  color: white;
-  text-decoration: none;
-  font-size: 30px;
-  margin: 0 20px;
-}
