@@ -1,83 +1,118 @@
-/* RESET */
 *,
 *::before,
 *::after {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
 * {
   margin: 0;
-  padding: 0; }
-  * .body-index {
-    height: 100vh;
-    font-family: "Roboto", sans-serif;
-    display: grid;
-    grid-template-areas: "header" "nav"  "main" "footer";
-    grid-template-columns: 1fr;
-    grid-template-rows: 0.5fr 0.2fr 2fr 1fr;
-    /*Tablet*/
-    /*Desktop*/ }
-    * .body-index picture,
-    * .body-index svg,
-    * .body-index video {
-      display: block;
-      max-width: 100%; }
-    * .body-index .header-index {
-      grid-area: header; }
-      * .body-index .header-index .top-nav {
-        background-color: #1b4079; }
-        * .body-index .header-index .top-nav .logo {
-          display: flex;
-          flex-direction: column;
-          align-items: center; }
-          * .body-index .header-index .top-nav .logo .logo-header {
-            max-width: 100%;
-            align-items: center; }
-          * .body-index .header-index .top-nav .logo img {
-            width: auto;
-            height: 92px; }
-          * .body-index .header-index .top-nav .logo .logo-text a {
-            display: inline-block;
-            text-align: center;
-            text-transform: uppercase;
-            width: 300px;
-            margin-left: 20px; }
-    * .body-index .navbar-index {
-      grid-area: nav;
-      background: #112545; }
-      * .body-index .navbar-index .nav-link {
-        text-align: center;
-        padding: 10px; }
-        * .body-index .navbar-index .nav-link li {
-          display: inline-block;
-          margin-right: 60px; }
-          * .body-index .navbar-index .nav-link li:last-child {
-            margin-right: 0; }
-    * .body-index .main-index {
-      grid-area: main;
-      padding: 50px 60px; }
-    * .body-index .footer-index {
-      grid-area: footer;
-      background: #112545;
-      width: 100%;
-      padding: 10px;
-      margin-top: auto; }
-      * .body-index .footer-index .social-media {
-        display: flex;
-        justify-content: center;
-        align-items: center; }
-        * .body-index .footer-index .social-media .social-link {
-          color: white;
-          text-decoration: none;
-          font-size: 30px;
-          margin: 0 20px; }
-    * .body-index .nav-link li a,
-    * .body-index .logo-text a {
-      text-decoration: none;
-      color: white;
-      font-family: "Roboto Condensed"; }
-    @media (min-width: 425px) {
-      * .body-index .header-index .top-nav {
-        padding: 10px 50px;
-        background-color: #1b4079; }
-        * .body-index .header-index .top-nav .logo {
-          flex-direction: row; } }
+  padding: 0;
+}
+
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+.footer-index {
+  grid-area: footer;
+  background: #112545;
+  width: 100%;
+  padding: 10px;
+  margin-top: auto;
+}
+.footer-index .social-media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer-index .social-media .social-link {
+  color: white;
+  text-decoration: none;
+  font-size: 30px;
+  margin: 0 20px;
+}
+
+.nav-link li a {
+  text-decoration: none;
+  color: white;
+  font-family: "Roboto Condensed";
+}
+
+.header-index {
+  grid-area: header;
+}
+.header-index .top-nav {
+  background-color: #1b4079;
+}
+.header-index .top-nav .logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header-index .top-nav .logo .logo-header {
+  max-width: 100%;
+  align-items: center;
+}
+.header-index .top-nav .logo img {
+  width: auto;
+  height: 92px;
+}
+.header-index .top-nav .logo .logo-text a {
+  display: inline-block;
+  text-align: center;
+  text-transform: uppercase;
+  width: 300px;
+  margin-left: 20px;
+  text-decoration: none;
+  color: white;
+  font-family: "Roboto Condensed";
+}
+
+.navbar-index {
+  grid-area: nav;
+  background: #112545;
+}
+.navbar-index .nav-link {
+  text-align: center;
+  padding: 10px;
+}
+.navbar-index .nav-link li {
+  display: inline-block;
+  margin-right: 60px;
+}
+.navbar-index .nav-link li:last-child {
+  margin-right: 0;
+}
+
+.grid-index, .body-index {
+  display: grid;
+  grid-template-areas: "header" "nav" "main" "footer";
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.5fr 0.2fr 2fr 1fr;
+}
+
+.body-index {
+  height: 100vh;
+  font-family: "Roboto", sans-serif;
+}
+
+.main-index {
+  grid-area: main;
+  padding: 50px 60px;
+}
+
+/*Tablet*/
+@media (min-width: 425px) {
+  .header-index .top-nav {
+    padding: 10px 50px;
+  }
+  .header-index .top-nav .logo {
+    flex-direction: row;
+  }
+}
+/*Desktop*/
+
+/*# sourceMappingURL=style.css.map */

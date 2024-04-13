@@ -1,0 +1,10 @@
+.grid-index {
+    display: grid;
+    grid-template-areas:
+      "header"
+      "nav"
+      "main"
+      "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.5fr 0.2fr 2fr 1fr;
+}

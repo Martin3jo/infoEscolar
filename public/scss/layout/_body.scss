@@ -1,0 +1,6 @@
+@use "grid";
+.body-index {
+    height: 100vh;
+    font-family: "Roboto", sans-serif;  
+    @extend .grid-index;
+}

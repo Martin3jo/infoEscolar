@@ -1,0 +1,47 @@
+@use "abstracts/variables" as *;
+.header-index {
+    grid-area: header;
+    .top-nav {
+      background-color: $primary-color;
+      .logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .logo-header {
+          max-width: 100%;
+          align-items: center;
+        }
+        img {
+          width: auto;
+          height: 92px;
+        }
+        .logo-text {
+          a {
+            display: inline-block;
+            text-align: center;
+            text-transform: uppercase;
+            width: 300px;
+            margin-left: 20px;
+            text-decoration: none;
+            color: white;
+            font-family: "Roboto Condensed";
+          }
+        }
+      }
+    }
+  }
+  .navbar-index {
+    grid-area: nav;
+    background: $secondary-color;
+    .nav-link {
+      text-align: center;
+      padding: 10px;
+      li {
+        display: inline-block;
+        margin-right: 60px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
