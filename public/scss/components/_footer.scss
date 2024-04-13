@@ -1,0 +1,24 @@
+@use "abstracts/variables" as *;
+.footer-index {
+    grid-area: footer;
+    background: $secondary-color;
+    width: 100%;
+    padding: 10px;
+    margin-top: auto;
+    .social-media {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .social-link {
+        color: white;
+        text-decoration: none;
+        font-size: 30px;
+        margin: 0 20px;
+      }
+    }
+  }
+  .nav-link li a {
+    text-decoration: none;
+    color: white;
+    font-family: "Roboto Condensed";
+  }
