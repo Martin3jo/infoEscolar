@@ -1,0 +1,177 @@
+/* RESET */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto", sans-serif;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+/* NAVBAR */
+.top-nav {
+  padding: 10px 50px;
+  background-color: #1b4079;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.logo img {
+  width: 75px;
+  height: auto;
+}
+
+.logo-text a {
+  display: inline-block;
+  text-align: center;
+  text-transform: uppercase;
+  width: 300px;
+  margin-left: 20px;
+}
+
+nav {
+  background: #112545;
+  padding: 10px;
+}
+
+.nav-link {
+  text-align: center;
+}
+
+.nav-link li {
+  display: inline-block;
+  margin-right: 60px;
+}
+
+.nav-link li a,
+.logo-text a {
+  text-decoration: none;
+  color: white;
+  font-family: "Roboto Condensed";
+}
+
+.nav-link li:last-child {
+  margin-right: 0;
+}
+
+/* MOBILE NAVBAR */
+@media screen and (max-width: 768px) {
+  .top-nav {
+    padding: 10px 20px;
+  }
+  .logo {
+    flex-direction: column;
+  }
+  .logo-text a {
+    margin: 0px;
+  }
+  .nav-link li {
+    margin-right: 30px;
+  }
+}
+
+/* NOVEDADES */
+main {
+  padding: 30px 20px;
+}
+
+/* FOOTER */
+footer {
+  background: #112545;
+  width: 100%;
+  padding-top: 10px;
+  margin-top: auto;
+}
+
+.social-media {
+  display: flex;
+  justify-content: center;
+}
+
+.social-link {
+  color: white;
+  text-decoration: none;
+  font-size: 30px;
+  margin-right: 20px;
+}
+.social-link:last-child {
+  margin-right: 0;
+}
+
+/* USUARIO */
+.login-container {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center; 
+}
+
+.login-box{
+  width: 400px; 
+  height: auto;
+  padding:40px;
+  border: 1px solid #989898; 
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.login-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.login-form input{
+  padding:10px;
+  border: 1px solid #989898;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.login-form label{
+  color:#000000cf;
+  font-size: 13px;
+  margin-bottom: 5px;
+  margin-top: 30px;
+  text-align: left;
+}
+
+.login-button{
+  margin-top: 30px;
+  padding:10px;
+  background-color: #5EB6FD;
+  color: white;
+  font-weight: 600;
+  border: 1px solid  #5EB6FD;
+  border-radius: 20px;
+  box-shadow: 0px 3px 0px #498dc4;
+}
+
+@media screen and (max-width: 768px) {
+  .login-box{
+    width: 80%; 
+  }
+}
