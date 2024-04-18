@@ -8,17 +8,17 @@ const cors = require('cors')
 app.use(cors());
 
 //SESSION de USUARIO
-const session = require('express-session')
-app.use(session({
-  secret: 'Mi secreto',
-  //POR LO VISTO ESTAN DEPRECADOS
-  resave: false,
-  saveUninitialized: false
-}));
+// const session = require('express-session')
+// app.use(session({
+//   secret: 'Mi secreto',
+//   //POR LO VISTO ESTAN DEPRECADOS
+//   resave: false,
+//   saveUninitialized: false
+// }));
 
 //COOKIES
-const cookies = require('cookie-parser')
-app.use(cookies())
+// const cookies = require('cookie-parser')
+// app.use(cookies())
 
 /*LLAMADO AL EJS*/
 app.set("view engine", "ejs");  
@@ -30,12 +30,12 @@ app.use(express.static(path.join(carpetaPublic)));
 
 /*CAPTURADOR DE INFORMACION*/
 /*Capturamos datos de un formulario en forma de objeto*/
-app.use(express.urlencoded({extended: false}));
-app.use(express.json());
+// app.use(express.urlencoded({extended: false}));
+// app.use(express.json());
 
 /*MEJORA A LOS VERBOS HTTP: PUT - DELETE*/
-const methodOverride = require('method-override');
-app.use(methodOverride('_method'));
+// const methodOverride = require('method-override');
+// app.use(methodOverride('_method'));
 
 /*PUERTO*/
 const port = process.env.PORT || 4000;
@@ -67,7 +67,7 @@ const rutasIndex = require("./routes/index.routes");
 /*ENTRY POINTS*/
 app.use("/", rutasIndex);
 // app.use("/productos", rutasProductos);
-//  app.use("/usuario", rutasUsuarios);
+ app.use("/usuario", rutasUsuarios);
 // app.use("/admin",noAdminMiddleware, rutasAdmin);
 
 //APIs POINTS
@@ -76,7 +76,7 @@ app.use("/", rutasIndex);
 // app.use("/api/categorias", apiCategorias)
 
 /*RESPUESTA AL ERROR 404*/
-app.use((req, res, next) => {
-  res.status(404).render("404");
-});
+// app.use((req, res, next) => {
+//   res.status(404).render("404");
+// });
 
