@@ -1,0 +1,42 @@
+@use "utils/variable" as *;
+
+.button-style{
+        padding: 10px;
+        margin-top: 10px;
+        background-color: #5eb6fd;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+}
+.button-style
+
+.button-square-lightblue {
+        padding: 10px;
+        background-color: $bg-color-dark;
+        cursor: pointer; 
+        color: $primary-color;
+        border: none;
+        font-weight: 500;
+    }
+    
+.button-square-lightblue:hover {
+    background-color: #C4D4EA; /* Change background color on hover */
+}
+
+.button-square-lightblue {
+        padding: 10px;
+        background-color: $bg-color-dark;
+        cursor: pointer; 
+        color: $primary-color;
+        border: none;
+        font-weight: 500;
+    }
+    
+.button-square-lightblue:hover {
+    background-color: #C4D4EA; /* Change background color on hover */
+}
+    
+
+   

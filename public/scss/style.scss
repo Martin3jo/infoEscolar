@@ -1,77 +1,130 @@
-@use "base";
+@use "utils";
 @use "components";
-@use "layout";
+@use "pages";
 
-  /*Tablet*/
-  @media (min-width: 425px) {
-    .header-index {
-      .top-nav {
-        padding: 10px 50px;
-        .logo {
-          flex-direction: row;
+/*Tablet*/
+@media (min-width: 768px) {
+
+
+  .main-instituto {
+    grid-template-rows: 0.5fr 1fr 1fr;
+    .instituto-division {
+      display: grid;
+      grid-area: 2 / 1 / 3 / 2;
+      grid-template-columns: 2fr 2fr;
+      grid-template-rows: 2fr;
+      column-gap: 15px;
+      p {
+        grid-area: 1 / 1 / 2 / 2;
+      }
+      img {
+        grid-area: 1 / 2 / 2 / 3;
+        width: 100%;
+      }
+    }
+  }   
+  .main-index{
+    .titulo-tablon {
+      h1 {
+        text-align: left;
+      }
+    }
+      .container-tablon{
+      grid-template-columns: 1fr 1fr;
+      .box-noticia-fija {
+        grid-column: span 2;
+        display: grid;
+        grid-template-rows: 0.5fr;
+        grid-template-columns: repeat(2, 1fr);
+        img{
+          grid-area: 1/1/2/2;
+        }
+        .text-container{
+          grid-area: 1/2/2/3;
+          gap: 15px 0px;
         }
       }
     }
   }
-  /*Desktop*/
-  @media (min-width: 768px) {
-  }
-
-// aqui esta codigo login
-
-.login-container {
-  display: flex;
-  flex-direction: column; 
-  justify-content: center;
-  align-items: center; 
-  
-  .login-box {
-    width: 400px; 
-    height: auto;
-    padding:40px;
-    border: 1px solid #989898; 
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    
-    .login-form {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      margin-bottom: 20px;
-      
-      input {
-        padding:10px;
-        border: 1px solid #989898;
-        border-radius: 8px;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+  .main-noticia{
+    .container-noticia{
+      margin: 5% 5%;
+      .img-wrapper {
+        height: 500px;
+        overflow: hidden;
       }
-      
-      label {
-        color:#000000cf;
-        font-size: 13px;
-        margin-bottom: 5px;
-        margin-top: 30px;
-        text-align: left;
+    .box-noticia-indiv {
+      padding:30px 60px;
+    }
+    .box-comentario{
+      padding:30px 60px;
+    }
+    }
+  }
+  .main-contacto{
+    margin: 3% 10%;
+  }
+  .main-login{
+    .box-form .login-form img {
+        width: 35%;
       }
     }
-    
-    .login-button {
-      margin-top: 30px;
-      padding:10px;
-      background-color: #5EB6FD;
-      color: white;
-      font-weight: 600;
-      border: 1px solid  #5EB6FD;
-      border-radius: 20px;
-      box-shadow: 0px 3px 0px #498dc4;
+  
+
+  //Main Alumno
+  .main-alumno {
+    height: 66vh;
+    .contenedor {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  }
+  //Main Admin
+  .main-admin {
+    height: 66vh;
+    .contenedor {
+      flex-direction: row;
+      align-items: flex-start;
     }
   }
 }
 
-@media screen and (max-width: 768px) {
-  .login-box{
-    width: 80%; 
+/*Desktop*/
+@media (min-width: 1024px) {
+  .main-index{
+      .container-tablon{
+      grid-template-columns: 1fr 1fr 1fr;
+      .box-noticia-fija {
+        grid-column: span 3;
+      }
+    }
   }
+
+  .main-noticia{
+    .container-noticia{
+      margin: 3% 10%;
+      .img-wrapper {
+        height: 600px;
+      }
+      .box-noticia-indiv {
+        padding:30px 80px;
+      }
+      .box-comentario{
+        padding:30px 80px;
+      }
+    }
+  }
+  .main-contacto{
+    flex-direction: row;
+    gap: 80px;
+    .info-contacto{
+      .info-map iframe {
+        height: 90%;
+      }
+    }
+    .form-contacto form {
+      width: auto;
+      height:80%;
+  }
+}
 }

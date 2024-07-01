@@ -1,0 +1,67 @@
+.main-adminProducto {
+  
+  height: 100%;
+
+  .form-registro {
+    width: 80%;
+    background: transparent;
+    color: black;
+    border-radius: 10px;
+    padding: 30px 40px;
+    border: 2px solid blue;
+    margin: 60px auto;
+    text-align: center;
+    font-size: 20px;
+    .form-crearProducto {
+        display: flex;
+        flex-direction: column;
+      padding: 10px;
+      .input-box {
+        width: 100%;
+        padding: auto;
+        margin: 20px 0px;
+        input,select{
+          width: 100%;
+          background: transparent;
+
+          outline: none;
+          border: 2px solid blue;
+          border-radius: 40px;
+          font-size: 14px;
+          color: black;
+          padding: 5px 20px;
+          &::placeholder{
+            color: grey;
+          }
+        }
+        .e-marca {
+        }
+        .e-descripcion {
+            width: 100%;
+          background: transparent;
+
+          outline: none;
+          border: 2px solid blue;
+       
+          font-size: 14px;
+          color: black;
+          padding: 5px 20px;
+          &::placeholder{
+            color: grey;
+          }
+        }
+        .e-avatar {
+        }
+      }
+      .boton-crear {
+        display: flex;
+        padding: 10px;
+      }
+    }
+  }
+  .errores-front {
+  }
+  .boton-volver {
+    padding: 10px;
+  }
+}

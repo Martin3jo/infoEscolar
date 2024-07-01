@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head', {titulo : 'crear' , estilo :
+  'crearProducto.css' }) %>
+
+  <body>
+    <%- include('../partials/nav.ejs') %>
+    <main class="main-adminProducto">
+      <div class="form-registro">
+        <form
+          action="/usuario/perfil/publicacion/crearPublicacion"
+          method="post"
+          enctype="multipart/form-data"
+          class="form-crearProducto e-form"
+        >
+          <!--TITULO-->
+          <div class="input-box">
+            <label for="titulo">Titulo</label>
+            <input
+              type="text"
+              name="titulo"
+              value="<%= locals.old && old.marca ? old.titulo : null %>"
+              class="e-marca"
+            />
+            <!--comentario para los errores-->
+            <% if (locals.errors && errors.titulo) { %>
+            <div><%= errors.titulo.msg %></div>
+            <% } %>
+          </div>
+
+          <!-- Noticia -->
+          <div class="input-box">
+            <label for="contenido">Noticia</label>
+            <textarea
+              class="e-descripcion"
+              name="contenido"
+              id="contenido"
+              rows="10"
+            >
+<%= locals.old && locals.old.contenido ? locals.old.contenido : '' %></textarea
+            >
+          </div>
+          <!--comentario para los errores-->
+          <% if (locals.errors && errors.contenido) { %>
+          <div><%= errors.contenido.msg %></div>
+          <% } %>
+
+          <!--CATEGORIA-->
+          
+
+          
+          <div class="input-box">
+            <label for="categoria">Id Docente:</label>
+            <input
+            type="number"
+            id="idDocente"
+            name="idDocente"
+            min="0" max="10" step="1" required
+            value="<%= locals.old && old.idDocente ? old.idDocente : null %>"
+            class="idDocente"
+          />
+            <!-- Comentario para los errores -->
+            <% if (locals.errors && locals.errors.idDocente) { %>
+            <div><%= locals.errors.idDocente.msg %></div>
+            <% } %>
+          </div>
+        
+          <!--FECHA-->
+          <div class="input-box">
+            <label for="disponibilidad">Fecha</label>
+            <input type="datetime-local" name="fechaPublicacion" />
+          </div>
+
+          <!--AVATAR-->
+          <div class="input-box">
+            <label for="imagen">Imagen Noticia:</label><br />
+            <input
+              type="file"
+              class="imagen"
+              name="imagen"
+              accept="image/*"
+            />
+            <!--comentario para los errores-->
+            <% if (locals.errors && errors.imagen) { %>
+            <div><%= errors.imagen.msg %></div>
+            <% } %>
+          </div>
+          <div class="boton-crear">
+            <button type="submit" name="accion" value="crear">Crear</button>
+          </div>
+        </form>
+      </div>
+      <!--ERRORES FRONT-->
+      <section class="errores-front">
+        <ul></ul>
+      </section>
+      <div class="boton-volver">
+        <a href="/usuario/perfil/publicacion"
+          ><button><i class="fa-regular fa-circle-left"></i></button
+        ></a>
+      </div>
+    </main>
+    <!-- <%- include('../partials/footer') %> -->
+    <script src="/js/errors-forms.js"></script>
+  </body>
+</html>

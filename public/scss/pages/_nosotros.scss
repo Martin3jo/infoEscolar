@@ -1,0 +1,34 @@
+.main-instituto {
+  grid-area: 2 / 1 / 3 / 2;
+  display: grid;
+  grid-template-columns: 4fr;
+  grid-template-rows: 0.5fr 4fr 1fr;
+  margin: 20px 30px;
+  row-gap: 15px;
+
+  h2 {
+    grid-area: 1 / 1 / 2 / 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .instituto-division {
+    grid-area: 2 / 1 / 3 / 2;
+    display: grid;
+    grid-template-columns: 4fr;
+    grid-template-rows: 1fr 0.5fr;
+    row-gap: 8px;
+
+    p {
+      grid-area: 1 / 1 / 2 / 2;
+    }
+    img {
+      grid-area: 2 / 1 / 3 / 2;
+
+      width: 100%;
+    }
+  }
+  p {
+    grid-area: 3 / 1 / 4 / 2;
+  }
+}

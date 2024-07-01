@@ -1,0 +1,43 @@
+@use "utils/variable" as *;  
+
+@mixin button-style($padding-size, $bg-color, $radius: 0) {
+    padding: $padding-size;
+    background-color: $bg-color;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    @if $bg-color == $button-dark{
+        color:white;
+        @include hover{
+            background-color:#0a4da3;
+        }
+    } @else if $bg-color == $button-light{
+        color: $font-blue;
+        @include hover{
+            background-color:#C4D4EA;
+        }
+    }
+    @if $radius != 0 {
+      border-radius: $radius;
+    }
+}
+@mixin hover {
+    &:not([disabled]):hover {
+      @content;
+    }
+}
+
+@mixin box-style($bg-color: white, $radius:0 , $shadow){
+    background-color: $bg-color;
+    @if $bg-color != white{
+        background-color: $bg-color;
+    }
+    border: none;
+    @if $radius != 0 {
+        border-radius: $radius;
+    }
+    @if $shadow == "yes"{
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    }@else if $shadow == "no"{
+    }
+}

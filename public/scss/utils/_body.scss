@@ -1,0 +1,9 @@
+@use "utils/variable" as *;
+
+.body-index {
+  background-color: $bg-color-light;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 0.5fr 4fr 0.20fr;
+  grid-template-columns: 1fr;
+}

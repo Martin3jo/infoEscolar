@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs', {titulo: "Colegio Jorge Newbery", estilo:
+  "style.css"})%>
+  <body class="body-index">
+    <%- include('../partials/nav.ejs') %>
+    <main class="main-alumno">
+      <div class="contenedor">
+        <div class="card-nombre">
+          <h2>Trejo,Martin</h2>
+          <button type="button">cerrar sesion</button>
+        </div>
+        <div class="card-detalles">
+          <h4>Detalle Alumno</h4>
+          <h6>DNI:</h6>
+          <h6>Fecha de nacimiento:</h6>
+          <h6>Dirección:</h6>
+          <h6>Teléfono:</h6>
+          <h6>Email:</h6>
+          <h6>Curso:</h6>
+          <h6>Año:</h6>
+        </div>
+        <div class="card-reportes">
+          <h4>Reportes</h4>
+          <h6>Fecha registro:</h6>
+        </div>
+      </div>
+    </main>
+    <%- include('../partials/footer.ejs')%>
+  </body>
+</html>

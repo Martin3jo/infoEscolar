@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs', {titulo: "Colegio Jorge Newbery", estilo:
+  "style.css"})%>
+  <body class="body-index">
+    <%- include('../partials/nav.ejs') %>
+    <main class="main-noticia">
+      <div class="container-noticia">
+        <article class="box-noticia-indiv">
+          <h1 class="titulo-noticia-indiv">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+          </h1>
+          <p class="fecha-noticia-indiv">20 AGOSTO, 2023</p>
+          <div class="img-wrapper">
+            <img class="img-principal" src="images/default.png" alt="" />
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam sit
+            veritatis voluptatem! Amet deleniti doloremque voluptatibus! Quae,
+            natus suscipit id numquam unde itaque cumque odit eveniet enim eos,
+            ut excepturi.
+          </p>
+          <h2>loremlorem</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Reprehenderit expedita ex labore aliquam aspernatur ipsam possimus,
+            nostrum ratione id eaque explicabo autem adipisci reiciendis modi,
+            quas iure similique fuga facilis. Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit. Earum quisquam eum cum, culpa, sunt
+            cupiditate laudantium minus iure quasi non ab eveniet at, ex tempora
+            hic nisi dolor aliquam. Quos? <br />Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit. Minus asperiores adipisci perspiciatis
+          </p>
+          <img class="img-noticia-indiv" src="images/default.png" alt="" />
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non
+            tempora quibusdam vel dignissimos explicabo. Excepturi omnis totam
+            cupiditate cum dolore est quo deserunt iusto placeat. Doloribus vel
+            recusandae nesciunt beatae.
+          </p>
+        </article>
+        <section class="box-comentario">
+          <h2>Comentarios</h2>
+          <hr />
+          <form action="" method="POST">
+            <textarea
+              name="comment"
+              placeholder="Escribe tu comentario..."
+            ></textarea>
+            <button type="">Inicia sesion para comentar</button>
+            <!--si esta conectado,  'Publicar' , sino 'Inicia sesión para comentar'-->
+          </form>
+          <div class="comentario">
+            <div class="comentario-nombre-fecha">
+              <p class="comentario-nombre">WOWOOW</p>
+              <p class="comentario-fecha">21 AGOSTO, 2023</p>
+            </div>
+            <p class="comentario-texto">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo
+              voluptatum saepe minus repudiandae aliquam? Ab consequatur iste
+              in. Sit veniam at amet in ipsa dicta consequuntur neque minus
+              saepe placeat.
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+    <%- include('../partials/footer.ejs')%>
+  </body>
+</html>

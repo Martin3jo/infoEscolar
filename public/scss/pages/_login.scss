@@ -1,0 +1,84 @@
+@use "utils/mixin" as *;
+@use "utils/variable" as *;
+
+.main-login {
+  background-image: url("/images/escuela2.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .box-form {
+    margin: 3% 5%;
+    max-width: 350px;
+    max-height: 500px;
+    flex-grow: 1;
+    padding: 30px;
+    @include box-style(rgb(239 239 242 / 80%), 30px, "yes");
+    .login-form {
+      height:100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+      img {
+        margin: auto;
+        width: 40%;
+      }
+      h1 {
+        text-align: center;
+      }
+
+      label {
+        font-weight: 600;
+      }
+      input {
+        padding: 0px 5px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+      }
+      .input-login1, .input-login-2{
+        height: 30px;
+        &::placeholder{
+          color: #989898;
+          opacity: 1;
+          font-size: 14px;
+        }
+
+      }
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 5px;
+      }
+
+      .button-login {
+        margin-top: 20px;
+        width: 100%;
+        @include button-style(5px, $button-dark, 10px);
+      }
+      .inicioSesion {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        .input-login-3 {
+          display: inline-block;
+          text-align: center;
+          input {
+            height: 8px;
+          }
+          label {
+            font-weight: 500;
+            font-size: 13px;
+          }
+        }
+        a {
+          color: black;
+          font-size: 12px;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
