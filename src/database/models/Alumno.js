@@ -35,6 +35,9 @@ let cols={
     } ,
     curso: {
         type:dataTypes.STRING
+    },
+    idUsuario: {
+        type: dataTypes.BIGINT
     }
 };
 
@@ -44,6 +47,18 @@ let config={
 }
 
 const Alumno=sequelize.define(alias,cols,config);
-
-    return Alumno;
+Alumno.associate = (models) => {
+    Alumno.belongsTo(models.Usuarios, {
+        foreignKey: 'idUsuario',
+        as: 'usuario'
+    });
+    Alumno.hasMany(models.PublicacionesAlumnos, {
+        foreignKey: 'idAlumno',
+        as: 'comentarios'
+    });
 };
+
+return Alumno;
+
+}
+    

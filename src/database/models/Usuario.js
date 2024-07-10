@@ -14,13 +14,7 @@ module.exports=(sequelize,dataTypes)=>{
         }, 
         contrasenia: {
             type:dataTypes.STRING
-        },
-        idDocente:{
-            type:dataTypes.BIGINT
-        } ,
-        idAlumno:{
-            type:dataTypes.BIGINT
-        } , 
+        }, 
         idRol: {
             type:dataTypes.BIGINT
         }
@@ -33,6 +27,21 @@ module.exports=(sequelize,dataTypes)=>{
     }
     
     const Usuario=sequelize.define(alias,cols,config);
+    Usuario.associate = (models) => {
+        Usuario.belongsTo(models.Roles, {
+            foreignKey: 'idRol',
+            as: 'rol'
+        });
+        Usuario.hasOne(models.Alumnos, {
+            foreignKey: 'idUsuario',
+            as: 'alumno'
+        });
+        Usuario.hasOne(models.Docentes, {
+            foreignKey: 'idUsuario',
+            as: 'docente'
+        });
+    };
+    
     
         return Usuario;
     };

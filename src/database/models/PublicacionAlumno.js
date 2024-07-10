@@ -26,7 +26,16 @@ module.exports = (sequelize, dataTypes) => {
     };
   
     const PublicacionAlumno = sequelize.define(alias, cols, config);
-  
+    PublicacionAlumno.associate = (models) => {
+      PublicacionAlumno.belongsTo(models.Publicaciones, {
+          foreignKey: 'idPublicacion',
+          as: 'publicacion'
+      });
+      PublicacionAlumno.belongsTo(models.Alumnos, {
+          foreignKey: 'idAlumno',
+          as: 'alumno'
+      });
+  };
     return PublicacionAlumno;
   };
   

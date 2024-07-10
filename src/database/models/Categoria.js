@@ -2,12 +2,12 @@ module.exports=(sequelize,dataTypes)=>{
     let alias = "Categorias";
     
     let cols={
-        idPublicacion: {
+        idCategoria: {
             type:dataTypes.BIGINT,
             primaryKey:true
     },
-        categoria:{
-            type:dataTypes.INTEGER
+        nombre:{
+            type:dataTypes.STRING
         }
     };
     
@@ -17,6 +17,12 @@ module.exports=(sequelize,dataTypes)=>{
     }
     
     const Categoria=sequelize.define(alias,cols,config);
+    Categoria.associate = (models) => {
+        Categoria.hasMany(models.Publicaciones, {
+            foreignKey: 'idCategoria',
+            as: 'publicaciones'
+        });
+    };
     
         return Categoria;
     };

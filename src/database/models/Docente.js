@@ -21,6 +21,9 @@ module.exports=(sequelize,dataTypes)=>{
     },
     email: {
         type:dataTypes.STRING
+    },
+    idUsuario: {
+        type: dataTypes.BIGINT
     }
     };
     
@@ -30,7 +33,16 @@ module.exports=(sequelize,dataTypes)=>{
     }
     
     const Docente=sequelize.define(alias,cols,config);
-    
+    Docente.associate = (models) => {
+        Docente.belongsTo(models.Usuarios, {
+            foreignKey: 'idUsuario',
+            as: 'usuario'
+        });
+        Docente.hasMany(models.Publicaciones, {
+            foreignKey: 'idDocente',
+            as: 'publicaciones'
+        });
+    };
         return Docente;
     };
     

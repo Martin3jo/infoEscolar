@@ -53,7 +53,7 @@ app.use(bodyParser.json());
 
 /*ROUTES*/
 const rutasIndex = require("./src/routes/index.routes");
-// const rutasUsuarios = require("./routes/users.routes");
+ const rutasUsuarios = require("./src/routes/usuario.routes");
 const rutasInstituto =require ("./src/routes/instituto.routes")
 // const rutasAdmin = require("./routes/admin.routes");
 const rutasContacto=require('./src/routes/contacto.routes')
@@ -70,7 +70,7 @@ const rutasContacto=require('./src/routes/contacto.routes')
 
 /*ENTRY POINTS*/
 app.use("/", rutasIndex);
-// app.use("/usuario", rutasUsuarios);
+app.use("/usuario", rutasUsuarios);
 app.use("/instituto", rutasInstituto)
 app.use("/contacto", rutasContacto);
 // app.use("/admin",rutasAdmin)
