@@ -7,14 +7,14 @@
     <main class="main-admin">
       <div class="contenedor">
         <div class="card-nombre">
-          <h2> apellido,nombre</h2>
+          <h2> <%= datosAdmin.apellido %>,<%= datosAdmin.nombre %> </h2>
           <button type="button">cerrar sesion</button>
         </div>
         <div class="card-detalles">
           <h4>Detalle Docente</h4>
-          <h6>DNI:</h6>
-          <h6>Teléfono:</h6>
-          <h6>Email:</h6>
+          <h6>DNI: <%= datosAdmin.dni %></h6>
+          <h6>Teléfono:<%= datosAdmin.telefono %></h6>
+          <h6>Email:<%= datosAdmin.email %></h6>
           <h6>Año:</h6>
         </div>
         <div class="card-reportes">
