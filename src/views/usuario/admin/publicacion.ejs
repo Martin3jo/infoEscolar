@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('../partials/head.ejs', {titulo: "Colegio Jorge Newbery", estilo: "style.css"})%>
+  <%- include('../../partials/head.ejs', {titulo: "Colegio Jorge Newbery", estilo: "style.css"})%>
   <body class="body-index">
-    <%- include('../partials/nav.ejs') %>
+    <%- include('../../partials/nav.ejs') %>
     <main class="main-publicacion">
       <section>
         <!--SEARCH-->
@@ -20,7 +20,9 @@
         </form>
       </section>
       <section >
-        <a href="/usuario/perfil/publicacion/crearPublicacion"><button class="crear-producto primary" type="button">Crear Publicacion</button></a>
+        <form action="/usuario/perfil/publicacion/crearPublicacion">
+        <button class="crear-producto primary" type="submit">Crear Publicacion</button>
+      </form>
       </section>
       <section class="productos-main-caja">
         <% if (publicaciones.length === 0) { %>
@@ -63,7 +65,7 @@
         <% } %>
       </section>
     </main>
-    <%- include('../partials/footer.ejs')%>
+    <%- include('../../partials/footer.ejs')%>
     <script src="/js/adminProductos.js"></script>
     <script src="/js/admin.js"></script>
   </body>

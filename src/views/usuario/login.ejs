@@ -6,11 +6,14 @@
     <%- include('../partials/nav.ejs') %>
     <main class="main-login">
       <div class="box-form">
+      
         <form
           method="post"
-          action="usuario/perfil"
+          action="/usuario/login"
           class="login-form"
           id="formulario"
+          novalidate
+         
         >
           <img src="/images/logoalt.png" alt="" />
           <div class="input-login-1">
@@ -21,7 +24,12 @@
               name="username"
               required
               placeholder="Ingrese usuario"
+              value="<%= locals.old && old.username ? old.username:'' %>"
             />
+            <% if (locals.errors && errors.username) { %>
+              <p class="errors"> <%= errors.username.msg %></p>
+             
+            <% } %>
           </div>
           <div class="input-login-2">
             <label for="password">Contraseña </label>
@@ -32,12 +40,16 @@
               required
               placeholder="Ingrese contraseña"
             />
+            <% if (locals.errors && errors.password) { %>
+              <p class="errors"> <%= errors.password.msg %></p>
+             
+            <% } %>
           </div>
           <button class="button-login" type="submit">Iniciar sesion</button>
           <div class="inicioSesion">
             <div class="input-login-3">
-              <input type="checkbox" id="rememberMe" name="rememberMe" />
-              <label for="rememberMe">Recordar usuario</label>
+              <input type="checkbox" id="recordarme" name="recordarme" />
+              <label for="recordarme">Recordar usuario</label>
             </div>
             <a href="http://">¿Olvidaste tu contraseña?</a>
           </div>
@@ -47,6 +59,6 @@
 
     <%- include('../partials/footer.ejs')%>
 
-    <script src="/js/scriptLogin.js"></script>
+    <!-- <script src="/js/scriptLogin.js"></script> -->
   </body>
 </html>

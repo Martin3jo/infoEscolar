@@ -7,19 +7,20 @@ var logger = require('morgan');
 var dotenv= require('dotenv');
 var bodyParser = require('body-parser');
 const app = express();
+const userLoggedMiddleware = require('./src/middleware/estaLogueadoMiddleware');
 
 //Necesario para APIs
 const cors = require('cors')
 app.use(cors());
 
 //SESSION de USUARIO
-// const session = require('express-session')
-// app.use(session({
-//   secret: 'Mi secreto',
-//   //POR LO VISTO ESTAN DEPRECADOS
-//   resave: false,
-//   saveUninitialized: false
-// }));
+const session = require('express-session')
+app.use(session({
+  secret: 'Proyecto de mi autoria',
+  //POR LO VISTO ESTAN DEPRECADOS
+  resave: false,
+  saveUninitialized: false
+}));
 
 //COOKIES
 // const cookies = require('cookie-parser')
@@ -38,10 +39,7 @@ const carpetaPublic = path.resolve(__dirname, "public");
 app.use(express.static(path.join(carpetaPublic)));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-/*CAPTURADOR DE INFORMACION*/
-/*Capturamos datos de un formulario en forma de objeto*/
-// app.use(express.urlencoded({extended: false}));
-// app.use(express.json());
+app.use(userLoggedMiddleware);
 
 /*MEJORA A LOS VERBOS HTTP: PUT - DELETE*/
 // const methodOverride = require('method-override');

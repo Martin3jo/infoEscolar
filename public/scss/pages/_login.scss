@@ -15,6 +15,9 @@
     flex-grow: 1;
     padding: 30px;
     @include box-style(rgb(239 239 242 / 80%), 30px, "yes");
+    .errors{
+      color: red;
+    }
     .login-form {
       height:100%;
       display: flex;

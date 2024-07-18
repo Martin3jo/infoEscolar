@@ -1,15 +1,29 @@
 var express = require('express');
 var router = express.Router();
 const usuarioControllers = require('../controllers/usuarioControllers');
-//const publicacionRouter = require('../routes/publicacion');
+const guestMiddleware= require('../middleware/guestMiddleware')
 
+const {body} = require('express-validator')
+const validaciones = [
+    body('username').notEmpty().withMessage('Debes ingresar Usuario'),
+    body('password').notEmpty().withMessage('Debes ingresar Contraseña')
+];
 /* Login */
-router.get('/', usuarioControllers.login);
-router.post('/perfil', usuarioControllers.cuentaUsuario);
+router.get('/login', guestMiddleware,usuarioControllers.login);
+router.post('/login',validaciones, usuarioControllers.cuentaUsuario);
+
+/* Perfil */
+router.get('/perfil', usuarioControllers.perfil);
+router.post('/logout',usuarioControllers.logout)
 
 /* Publicaciones */
-//router.use('/perfil/publicacion', publicacionRouter);
+router.get('/perfil/publicacion', usuarioControllers.registroPublicaciones);
+router.get('/perfil/publicacion/crearPublicacion', usuarioControllers.crearPublicacion);
+router.post('/perfil/publicacion/crearPublicacion', usuarioControllers.crearPublicacion);
 
+/* Usuarios */
 router.get('/perfil/registro-usuario', usuarioControllers.registroUsuarios);
+
+
 
 module.exports = router;

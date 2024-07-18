@@ -1,0 +1,50 @@
+   [Inicio]
+      |
+   [¿Existen errores en el formulario?]
+    /          \
+   /            \
+  [Sí]          [No]
+   |              |
+[Mostrar errores]  |
+   |              |
+   v              v
+  [Fin]         [Buscar en la base de datos]
+                   |
+           [¿Se encontraron los datos?]
+             /                \
+            /                  \
+           [Sí]                [No]
+            |                    |
+[¿Es alumno o docente?]     [Mostrar "No se encontró"]
+     /        \
+    /          \
+[Alumno]    [Docente]
+    |          |
+   [Guardar en req.session y redirigir a la vista de alumno] 
+    | 
+   [Fin]
+    |
+   [Guardar en req.session y redirigir a la vista de docente]
+    |
+   [Fin]
+
+
+
+// const path = require('path');
+// const multer=require('multer');
+// const storage = multer.diskStorage({
+//     destination:(req,file,cb)=>{
+//         cb(null,'../public/images/avatars');
+//     },
+//     filename: (req,file,cb)=>{
+//         let fileName= `${Date.now()}_img${path.extname(file.originalname)}`;
+//         cb(null,fileName);
+//     }
+// })
+
+// const uploadFile=multer({storage})
+// router.post('/publicacion',uploadFile.single('avatar'),usuarioControllers.crearPublicacion);
+ 
+// const authMiddleware =require ('../middleware/authMiddleware')
+
+//const publicacionRouter = require('../routes/publicacion');

@@ -1,0 +1,29 @@
+@startuml
+!define RECTANGLE class
+
+start
+
+:Inicio;
+
+if (¿Existen errores en el formulario?) then (Sí)
+  :Mostrar errores;
+  stop
+else (No)
+  :Buscar en la base de datos;
+endif
+
+if (¿Se encontraron los datos?) then (Sí)
+  :¿Es alumno o docente?;
+  if (Alumno?) then (Sí)
+    :Guardar en req.session y redirigir a la vista de alumno;
+    stop
+  else (No)
+    :Guardar en req.session y redirigir a la vista de docente;
+    stop
+  endif
+else (No)
+  :Mostrar "No se encontró";
+  stop
+endif
+
+@enduml

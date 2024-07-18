@@ -1,9 +1,8 @@
+<!-- nav.ejs -->
 <nav class="navbar">
   <div class="top-row">
     <div class="logo">
-      <a href="/"><img
-        src="/images/logoalt.png" alt="Colegio Secundario Ing. Jorge Newbery Logo"
-    /></a>
+      <a href="/"><img src="/images/logoalt.png" alt="Colegio Secundario Ing. Jorge Newbery Logo" /></a>
     </div>
     <div class="title">
       <a href="/">COLEGIO SECUNDARIO <br> ING. JORGE NEWBERY</a>
@@ -23,12 +22,15 @@
       <li>
         <a href="/contacto"><i class="fas fa-phone"></i> CONTACTO</a>
       </li>
-      <li>
-        <a href="/usuario"><i class="fas fa-user"></i> USUARIO</a>
-      </li>
+      <% if (!usuarioLogueado) { %>
+        <li>
+          <a href="/usuario/login"><i class="fas fa-user"></i> USUARIO</a>
+        </li>
+      <% } else { %>
+        <li>
+          <a href="/usuario/perfil"><i class="fas fa-user"></i> PERFIL</a>
+        </li>
+      <% } %>
     </ul>
   </div>
-
 </nav>
-
-<script src="/js/scriptNavBar.js"></script>

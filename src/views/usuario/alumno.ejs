@@ -8,7 +8,9 @@
       <div class="contenedor">
         <div class="card-nombre">
           <h2> <%= datosAlumno.apellido %>,<%= datosAlumno.nombre %></h2>
-          <button type="button">cerrar sesion</button>
+          <form action="/usuario/logout" method="post">
+          <button type="submit">cerrar sesion</button>
+        </form>
         </div>
         <div class="card-detalles">
           <h4>Detalle Alumno</h4>
@@ -18,7 +20,7 @@
           <h6>Teléfono: <%= datosAlumno.telefono %></h6>
           <h6>Email: <%= datosAlumno.email %></h6>
           <h6>Curso: <%= datosAlumno.curso %></h6>
-          <h6>Año:</h6>
+          <h6>Año: <%= currentYear %></h6>
         </div>
         <div class="card-reportes">
           <h4>Reportes</h4>
