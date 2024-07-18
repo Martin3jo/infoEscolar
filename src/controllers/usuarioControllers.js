@@ -55,6 +55,7 @@ const usuarioControllers = {
               case 1:
                 const datosAdmin = usuarios.docente.dataValues;
                 req.session.usuarioLogueado = { ...datosAdmin, rol: usuarios.rol.idRol};
+                
                 res.redirect('/usuario/perfil');
                 break;
               case 2:
@@ -79,6 +80,7 @@ const usuarioControllers = {
   },
   perfil: function (req, res) {
     if (!req.session.usuarioLogueado) {
+    
       return res.redirect('/login');
     }
     const currentYear = new Date().getFullYear();
