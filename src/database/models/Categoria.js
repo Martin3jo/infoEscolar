@@ -3,11 +3,12 @@ module.exports=(sequelize,dataTypes)=>{
     
     let cols={
         idCategoria: {
-            type:dataTypes.BIGINT,
-            primaryKey:true
-    },
+            type:dataTypes.INTEGER,
+            primaryKey:true,
+            autoIncrement: true,
+        },
         nombre:{
-            type:dataTypes.STRING
+            type:dataTypes.STRING(75)
         }
     };
     
@@ -26,4 +27,3 @@ module.exports=(sequelize,dataTypes)=>{
     
         return Categoria;
     };
-    

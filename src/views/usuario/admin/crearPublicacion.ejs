@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('../../partials/head', {titulo : 'crear' , estilo :
-  'crearProducto.css' }) %>
+  <%- include('../../partials/head', {titulo : publicacion ? 'Editar Publicación' : 'Crear Publicación' , estilo : 'crearProducto.css' }) %>
 
   <body>
     <%- include('../../partials/nav.ejs') %>
     <main class="main-adminProducto">
       <div class="form-registro">
         <form
-          action="/usuario/perfil/publicacion/crearPublicacion"
+          action="<%= publicacion ? '/usuario/perfil/publicacion/editarPublicacion/' + publicacion.idPublicacion : '/usuario/perfil/publicacion/crearPublicacion' %>"
           method="post"
           enctype="multipart/form-data"
           class="form-crearProducto e-form"
@@ -19,8 +18,9 @@
             <input
               type="text"
               name="titulo"
-              value="<%= locals.old && old.marca ? old.titulo : null %>"
+              value="<%= publicacion ? publicacion.titulo : '' %>"
               class="e-marca"
+              required
             />
             <!--comentario para los errores-->
             <% if (locals.errors && errors.titulo) { %>
@@ -36,9 +36,8 @@
               name="contenido"
               id="contenido"
               rows="10"
-            >
-<%= locals.old && locals.old.contenido ? locals.old.contenido : '' %></textarea
-            >
+              required
+            ><%= publicacion ? publicacion.contenido : '' %></textarea>
           </div>
           <!--comentario para los errores-->
           <% if (locals.errors && errors.contenido) { %>
@@ -46,39 +45,22 @@
           <% } %>
 
           <!--CATEGORIA-->
-          
-
-          
           <div class="input-box">
-            <label for="categoria">Id Docente:</label>
-            <input
-            type="number"
-            id="idDocente"
-            name="idDocente"
-            min="0" max="10" step="1" required
-            value="<%= locals.old && old.idDocente ? old.idDocente : null %>"
-            class="idDocente"
-          />
-            <!-- Comentario para los errores -->
-            <% if (locals.errors && locals.errors.idDocente) { %>
-            <div><%= locals.errors.idDocente.msg %></div>
-            <% } %>
-          </div>
-        
-          <!--FECHA-->
-          <div class="input-box">
-            <label for="disponibilidad">Fecha</label>
-            <input type="datetime-local" name="fechaPublicacion" />
+            <label for="categoria">Categoria</label>
+            <select name="categoria" class="e-categoria" required>
+              <% categorias.forEach(categoria => { %>
+                <option value="<%= categoria.idCategoria %>" <%= publicacion && publicacion.idCategoria === categoria.idCategoria ? 'selected' : '' %>><%= categoria.nombre %></option>
+              <% }) %>
+            </select>
           </div>
 
-          <!--AVATAR-->
+          <!--IMAGEN-->
           <div class="input-box">
-            <label for="imagen">Imagen Noticia:</label><br />
+            <label for="imagen">Imagen:</label><br />
             <input
               type="file"
               class="imagen"
               name="imagen"
-              accept="image/*"
             />
             <!--comentario para los errores-->
             <% if (locals.errors && errors.imagen) { %>
@@ -86,7 +68,7 @@
             <% } %>
           </div>
           <div class="boton-crear">
-            <button type="submit" name="accion" value="crear">Crear</button>
+            <button type="submit" name="accion" value="crear"><%= publicacion ? 'Modificar' : 'Crear' %></button>
           </div>
         </form>
       </div>

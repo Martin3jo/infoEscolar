@@ -1,11 +1,9 @@
 const db = require("../database/models");
 const { validationResult } = require("express-validator");
-//const bcrypt = require("bcryptjs");
-//const Op = require('sequelize');
+const upload = require("../database/config/multer");
 
 const usuarioControllers = {
   login: function (req, res) {
-    
     res.render("usuario/login", { errors: [] });
   },
 
@@ -97,17 +95,125 @@ const usuarioControllers = {
         break;
     }
   },
-  registroPublicaciones: function (req, res) {
-    res.render("usuario/admin/publicacion", { publicaciones: [] });
+
+  renderPublicaciones: function (req, res) {
+    db.Publicaciones.findAll()
+      .then((publicaciones) => {
+        res.render("usuario/admin/publicacion", { publicaciones });
+      })
+      .catch((err) => {
+        console.error("Error fetching publicaciones:", err);
+        res.status(500).send("Error mostrando las publicaciones. Por favor, inténtelo de nuevo más tarde.");
+      });
   },
+
+  renderCrearEditarPublicacion: function (req, res) {
+    const postId = req.params.id; // Assuming the post ID is passed as a URL parameter
+
+    const fetchCategories = db.Categorias.findAll();
+    const fetchPost = postId ? db.Publicaciones.findByPk(postId) : Promise.resolve(null);
+
+    Promise.all([fetchCategories, fetchPost])
+      .then(([categorias, publicacion]) => {
+        res.render("usuario/admin/crearPublicacion", { publicacion, categorias, locals: {} });
+      })
+      .catch((err) => {
+        console.error("Error obteniendo las categorías o la publicación:", err);
+        res.status(500).send("Error obteniendo las categorías o la publicación. Por favor, inténtelo de nuevo más tarde.");
+      });
+  },
+
   crearPublicacion: function (req, res) {
-    res.render("usuario/admin/crearPublicacion", { publicaciones: [] });
+    // Verificar si el usuario esta autenticado y tiene el rol correcto
+    if (!req.session.usuarioLogueado || !req.session.usuarioLogueado.idDocente) {
+      return res.status(500).send('Error: Usuario no autenticado o idDocente no encontrado.');
+    }
+
+    const idDocente = req.session.usuarioLogueado.idDocente;
+
+    upload(req, res, (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Error subiendo la imagen. Por favor, inténtelo de nuevo más tarde.');
+      } else {
+        const { titulo, contenido, categoria } = req.body;
+        const imagen = req.file ? req.file.filename : 'default.png';
+        if (!titulo || !contenido || !categoria) {
+          return res.status(400).send('Se necesitan llenar todos los campos.');
+        }
+        const fechaPublicacion = new Date().toISOString().split('T')[0];
+
+        db.Publicaciones.create({
+          titulo,
+          contenido,
+          imagen,
+          fechaPublicacion,
+          idDocente,
+          idCategoria: categoria,
+          esFijado: req.body.esFijado ? true : false
+        })
+          .then(() => {
+            res.redirect('/usuario/perfil/publicacion');
+          })
+          .catch((err) => {
+            console.error("Error creando la publicación:", err);
+            res.status(500).send("Error creando la publicación. Por favor, inténtelo de nuevo más tarde.");
+          });
+      }
+    });
   },
-  registroUsuarios: function (req, res) {
-    // Asegúrate de que esta función está correctamente definida
-    // Aquí puedes agregar la lógica para obtener la lista de usuarios, si es necesario
-    res.render("usuario/admin/registroUsuarios", { usuarios: [] });
+
+  editarPublicacion: function (req, res) {
+    upload(req, res, (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Error subiendo la imagen. Por favor, inténtelo de nuevo más tarde.');
+      } else {
+        const { id } = req.params;
+        const { titulo, contenido, categoria } = req.body;
+        const imagen = req.file ? req.file.filename : null;
+
+        const fechaPublicacion = new Date().toISOString().split('T')[0];
+        const idDocente = req.session.usuarioLogueado.idDocente;
+
+        db.Publicaciones.update(
+          {
+            titulo,
+            contenido,
+            imagen: imagen ? imagen : db.Sequelize.literal('imagen'),
+            fechaPublicacion,
+            idDocente,
+            idCategoria: categoria,
+            esFijado: req.body.esFijado ? true : false
+          },
+          { where: { idPublicacion: id } }
+        )
+          .then(() => {
+            res.redirect('/usuario/perfil/publicacion');
+          })
+          .catch((err) => {
+            console.error("Error actualizando la publicación:", err);
+            res.status(500).send("Error actualizando la publicación. Por favor, inténtelo de nuevo más tarde.");
+          });
+      }
+    });
   },
+
+  eliminarPublicacion: function (req, res) {
+    const { id } = req.params;
+
+    db.Publicaciones.destroy({
+      where: { idPublicacion: id }
+    })
+      .then(() => {
+        res.redirect('/usuario/perfil/publicacion');
+      })
+      .catch((err) => {
+        console.error("Error eliminando la publicación:", err);
+        res.status(500).send("Error eliminando la publicación. Por favor, inténtelo de nuevo más tarde.");
+      });
+  },
+
   logout: function (req, res) {
     req.session.destroy(() => {
       res.clearCookie('perfil');

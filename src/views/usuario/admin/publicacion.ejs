@@ -20,7 +20,7 @@
         </form>
       </section>
       <section >
-        <form action="/usuario/perfil/publicacion/crearPublicacion">
+        <form action="/usuario/perfil/publicacion/crear">
         <button class="crear-producto primary" type="submit">Crear Publicacion</button>
       </form>
       </section>
@@ -45,7 +45,7 @@
                 >Modificar</a
               >
               <form
-                action="/usuario/perfil/publicacion/borrar/<%= publicaciones[i].idPublicacion %>?_method=DELETE"
+                action="/usuario/perfil/publicacion/borrar/<%= publicaciones[i].idPublicacion %>"
                 method="post"
                 class="productos-caja-2-boton"
               >

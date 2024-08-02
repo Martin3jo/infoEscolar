@@ -22,12 +22,12 @@ module.exports = (sequelize, dataTypes) => {
     idDocente: {
       type: dataTypes.BIGINT,
     },
-    esFijado:{
-      type:dataTypes.BOOLEAN
+    esFijado: {
+      type: dataTypes.BOOLEAN,
     },
     idCategoria: {
-      type: dataTypes.BIGINT
-  }
+      type: dataTypes.INTEGER,
+    },
   };
 
   let config = {
@@ -38,17 +38,17 @@ module.exports = (sequelize, dataTypes) => {
   const Publicacion = sequelize.define(alias, cols, config);
   Publicacion.associate = (models) => {
     Publicacion.belongsTo(models.Docentes, {
-        foreignKey: 'idDocente',
-        as: 'docente'
+      foreignKey: 'idDocente',
+      as: 'docente'
     });
     Publicacion.belongsTo(models.Categorias, {
-        foreignKey: 'idCategoria',
-        as: 'categoria'
+      foreignKey: 'idCategoria',
+      as: 'categoria'
     });
     Publicacion.hasMany(models.PublicacionesAlumnos, {
-        foreignKey: 'idPublicacion',
-        as: 'comentarios'
+      foreignKey: 'idPublicacion',
+      as: 'comentarios'
     });
-};
+  };
   return Publicacion;
 };

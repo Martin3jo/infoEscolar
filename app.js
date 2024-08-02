@@ -51,7 +51,7 @@ app.use(userLoggedMiddleware);
 
 /*ROUTES*/
 const rutasIndex = require("./src/routes/index.routes");
- const rutasUsuarios = require("./src/routes/usuario.routes");
+const rutasUsuarios = require("./src/routes/usuario.routes");
 const rutasInstituto =require ("./src/routes/instituto.routes")
 // const rutasAdmin = require("./routes/admin.routes");
 const rutasContacto=require('./src/routes/contacto.routes')
