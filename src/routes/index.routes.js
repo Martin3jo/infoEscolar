@@ -2,11 +2,11 @@ var express = require('express');
 var router = express.Router();
 const indexControllers = require('../controllers/indexControllers');
 
-/* GET página principal. */
+// Ruta para obtener la página principal
 router.get('/', indexControllers.renderIndex);
-/* GET filtrar publicaciones por categoría. */
+// Ruta para filtrar publicaciones por categoría
 router.get('/categoria/:idCategoria', indexControllers.filtrarPorCategoria);
-/* GET obtener una publicación específica por ID. */
+// Ruta para obtener una publicación específica por ID
 router.get('/publicacion/:id', indexControllers.obtenerPublicacionPorId);
 
 router.get('/pruebaSession', indexControllers.pruebaSession);
