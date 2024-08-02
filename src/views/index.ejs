@@ -1,94 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('partials/head.ejs', {titulo: "Colegio Jorge Newbery", estilo:
-  "style.css"})%>
+  <%- include('partials/head.ejs', {titulo: "Colegio Jorge Newbery", estilo: "style.css"})%>
   <body class="body-index">
     <%- include('partials/nav.ejs') %>
     <main class="main-index">
       <div class="container-index">
         <div class="titulo-tablon">
-          <h1>Novedades</h1>
+          <h1><a href="/">Novedades</a></h1>
           <div class="container-btns">
-            <button class="categ-btn">Información Estudiantil</button>
-            <button class="categ-btn">Eventos</button>
-            <button class="categ-btn">Comunidad</button>
-            <button class="categ-btn">Logros Estudiantiles</button>
-            <button class="categ-btn">Recursos Academicos</button>
+            <% categorias.forEach(categoria => { %>
+              <a href="/categoria/<%= categoria.idCategoria %>">
+                <button class="categ-btn"><%= categoria.nombre %></button>
+              </a>
+            <% }) %>
           </div>
         </div>
         <section class="container-tablon">
+          <% if (publicacionFijada) { %>
           <article class="box-noticia-fija">
-            <img src="/images/default.png" alt="" />
+            <img src="/uploads/<%= publicacionFijada.imagen %>" alt="" />
             <div class="text-container">
-              <h2 class="titulo-noticia-fijada">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Ducimus voluptatibus explicabo asperiores tempora voluptatem
-                odio laborum quas est odit, sapiente deleniti doloremque eveniet
-                consectetur aspernatur laudantium dolor dolore! Ea, impedit!
-              </h2>
-              <p class="fecha-noticia">Agosto 10, 2023</p>
-              <p class="descrip-noticia-fijada">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magnam
-                dolorem quis quos ducimus ipsam totam dicta mollitia. Tempora
-                dolorum nihil temporibus omnis officia suscipit assumenda, dicta
-                fugit amet ipsam. Laudantium! Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Obcaecati animi quasi at iste quo,
-                ducimus accusamus aliquid ut ullam dignissimos neque eligendi
-                cupiditate vero illum corporis accusantium maxime ex. Iste.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere
-                id deleniti vitae. Deleniti vel aliquid assumenda reprehenderit
-                ratione alias, dignissimos pariatur omnis nam maiores laboriosam
-                unde similique. Eum, soluta fuga?
-              </p>
-              <a href="#">Seguir leyendo <i class="fas fa-arrow-right"></i></a>
+              <h2 class="titulo-noticia-fijada"><%= publicacionFijada.titulo %></h2>
+              <p class="fecha-noticia"><%= new Date(publicacionFijada.fechaPublicacion).toLocaleDateString() %></p>
+              <p class="descrip-noticia-fijada"><%= publicacionFijada.contenido %></p>
+              <a href="/publicacion/<%= publicacionFijada.idPublicacion %>">Seguir leyendo <i class="fas fa-arrow-right"></i></a>
             </div>
           </article>
+          <% } %>
+          <% if (!publicacionFijada && publicaciones.length === 0) { %>
+          <p>No hay publicaciones disponibles.</p>
+          <% } else { %>
+          <% publicaciones.forEach(publicacion => { %>
           <article class="box-noticia">
-            <img src="/images/default.png" alt="" />
+            <img src="/uploads/<%= publicacion.imagen %>" alt="" />
             <div class="text-container">
-              <h3 class="titulo-noticia">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Deleniti enim adipisci, maxime nam modi labore consequuntur
-                dolorum, nostrum aliquid esse, tempore voluptate vitae
-                molestias. Autem nam atque iure blanditiis modi.
-              </h3>
-              <p class="fecha-noticia">Agosto 10, 2023</p>
-              <p class="descrip-noticia">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Laudantium nulla aut ullam exercitationem voluptates assumenda
-                magni eum porro nihil. Quisquam laboriosam, modi eum ab cum
-                obcaecati enim tempore veniam praesentium.
-              </p>
-              <a href="#">Seguir leyendo <i class="fas fa-arrow-right"></i></a>
+              <h3 class="titulo-noticia"><%= publicacion.titulo %></h3>
+              <p class="fecha-noticia"><%= new Date(publicacion.fechaPublicacion).toLocaleDateString() %></p>
+              <p class="descrip-noticia"><%= publicacion.contenido %></p>
+              <a href="/publicacion/<%= publicacion.idPublicacion %>">Seguir leyendo <i class="fas fa-arrow-right"></i></a>
             </div>
           </article>
-          <article class="box-noticia">
-            <img src="/images/default.png" alt="" />
-            <div class="text-container">
-              <h3 class="titulo-noticia">Titulo</h3>
-              <p class="fecha-noticia">Agosto 10, 2023</p>
-              <p class="descrip-noticia">adsad</p>
-              <a href="#">Seguir leyendo <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </article>
-          <article class="box-noticia">
-            <img src="/images/default.png" alt="" />
-            <div class="text-container">
-              <h3 class="titulo-noticia">Titulo</h3>
-              <p class="fecha-noticia">Agosto 10, 2023</p>
-              <p class="descrip-noticia">adsad</p>
-              <a href="#">Seguir leyendo <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </article>
-          <article class="box-noticia">
-            <img src="/images/default.png" alt="" />
-            <div class="text-container">
-              <h3 class="titulo-noticia">Titulo</h3>
-              <p class="fecha-noticia">Agosto 10, 2023</p>
-              <p class="descrip-noticia">adsad</p>
-              <a href="#">Seguir leyendo <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </article>
+          <% }) %>
+          <% } %>
         </section>
       </div>
     </main>
