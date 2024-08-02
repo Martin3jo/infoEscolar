@@ -14,5 +14,7 @@ router.post('/crearPublicacion', usuarioControllers.crearPublicacion);
 router.post('/editarPublicacion/:id', usuarioControllers.editarPublicacion);
 // Ruta para eliminar una publicación
 router.post('/borrar/:id', usuarioControllers.eliminarPublicacion);
+// Ruta para fijar/desfijar una publicación
+router.post('/fijar/:id', usuarioControllers.fijarPublicacion);
 
 module.exports = router;

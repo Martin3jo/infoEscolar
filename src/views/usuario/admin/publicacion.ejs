@@ -51,6 +51,13 @@
               >
                 <button>Borrar</button>
               </form>
+              <form
+                action="/usuario/perfil/publicacion/fijar/<%= publicaciones[i].idPublicacion %>"
+                method="post"
+                class="productos-caja-2-boton"
+              >
+                <button><%= publicaciones[i].esFijado ? 'Desfijar' : 'Fijar' %></button>
+              </form>
             </div>
           </div>
           <div class="productos-caja-1">

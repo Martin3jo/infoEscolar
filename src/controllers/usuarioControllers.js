@@ -207,6 +207,42 @@ const usuarioControllers = {
     }
   },
 
+  fijarPublicacion: async function (req, res) {
+    const { id } = req.params;
+
+    try {
+      // Verificar si la publicación ya está fijada
+      const publicacion = await db.Publicaciones.findByPk(id);
+      if (!publicacion) {
+        return res.status(404).send('Publicación no encontrada.');
+      }
+
+      const esFijado = publicacion.esFijado;
+
+      if (esFijado) {
+        // Desfijar la publicación si ya está fijada
+        await db.Publicaciones.update(
+          { esFijado: false },
+          { where: { idPublicacion: id } }
+        );
+      } else {
+        // Desfijar todas las publicaciones y fijar la seleccionada
+        await db.Publicaciones.update(
+          { esFijado: false },
+          { where: { esFijado: true } }
+        );
+        await db.Publicaciones.update(
+          { esFijado: true },
+          { where: { idPublicacion: id } }
+        );
+      }
+
+      res.redirect('/usuario/perfil/publicacion');
+    } catch (err) {
+      manejarError(res, err, "Error fijando/desfijando la publicación.");
+    }
+  },
+
   logout: function (req, res) {
     req.session.destroy(() => {
       res.clearCookie('perfil');
