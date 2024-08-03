@@ -20,24 +20,23 @@
         </form>
       </section>
       <section >
-        <form action="/usuario/perfil/publicacion/crear">
-        <button class="crear-producto primary" type="submit">Crear Publicacion</button>
-      </form>
+        <a href="/usuario/perfil/publicacion/crear"><button class="crear-producto primary" type="button">Crear Publicacion</button></a>
       </section>
       <section class="productos-main-caja">
         <% if (publicaciones.length === 0) { %>
         <p>No hay publicaciones disponibles.</p>
         <% } else { %> 
         <% for (let i = 0; i < publicaciones.length; i++) { %>
-        <div class="card shadow-lg" style="width: 18rem">
-          <div class="card-body">
-            <h5 class="card-title"><%= publicaciones[i].titulo %></h5>
-            <h6 class="card-subtitle mb-2"><%= publicaciones[i].fechaPublicacion %></h6>
-            <p class="card-text"><%= publicaciones[i].contenido %></p>
-          </div>
-        </div>
+        
         <article class="productos-caja">
           <div class="productos-caja-2">
+            <div class="card shadow-lg">
+              <div class="card-body">
+                <h5 class="card-title"><%= publicaciones[i].titulo %></h5>
+                <h6 class="card-subtitle mb-2"><%= new Date(publicaciones[i].fechaPublicacion).toLocaleDateString() %></h6>
+                <p class="card-text"><%= publicaciones[i].contenido %></p>
+              </div>
+            </div>
             <div class="productos-caja-2-botones">
               <a
                 class="productos-caja-2-boton"
@@ -61,12 +60,11 @@
             </div>
           </div>
           <div class="productos-caja-1">
-            <img
-              class="avatar-imagen"
-              src="/img/avatars/<%= publicaciones[i].imagen %>"
-              alt="avatar"
-            />
-          </div>
+            <% if (publicaciones[i].imagen) { %>
+              <img class="imagenPublic" src="/uploads/<%= publicaciones[i].imagen %>" alt="Imagen de la publicación">
+          <% } %>
+            
+        </div>
         </article>
         <% } %> 
         <% } %>

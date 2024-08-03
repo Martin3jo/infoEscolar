@@ -6,23 +6,7 @@
 @media (min-width: 768px) {
 
 
-  .main-instituto {
-    grid-template-rows: 0.5fr 1fr 1fr;
-    .instituto-division {
-      display: grid;
-      grid-area: 2 / 1 / 3 / 2;
-      grid-template-columns: 2fr 2fr;
-      grid-template-rows: 2fr;
-      column-gap: 15px;
-      p {
-        grid-area: 1 / 1 / 2 / 2;
-      }
-      img {
-        grid-area: 1 / 2 / 2 / 3;
-        width: 100%;
-      }
-    }
-  }   
+
   .main-index{
     .titulo-tablon {
       h1 {
@@ -87,6 +71,12 @@
       align-items: flex-start;
     }
   }
+  .main-publicacion{
+    .productos-caja{
+      flex-direction: row;
+    }
+  }
+  
 }
 
 /*Desktop*/
@@ -126,5 +116,10 @@
       width: auto;
       height:80%;
   }
-}
+  }
+  .main-instituto {
+    .instituto-division {
+      grid-template-columns: 1fr 1.5fr;
+    }
+  }
 }
