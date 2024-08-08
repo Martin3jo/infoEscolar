@@ -1,4 +1,3 @@
-
 /*3 Parametros (nombre de tabla,objeto literal con elementos de la tabla,)*/
 module.exports=(sequelize,dataTypes)=>{
     let alias = "Usuarios";
@@ -39,6 +38,10 @@ module.exports=(sequelize,dataTypes)=>{
         Usuario.hasOne(models.Docentes, {
             foreignKey: 'idUsuario',
             as: 'docente'
+        });
+        Usuario.hasMany(models.Comentarios, {
+            foreignKey: 'idUsuario',
+            as: 'comentarios'
         });
     };
     

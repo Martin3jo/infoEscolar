@@ -58,14 +58,43 @@ const indexControllers = {
   // Método para obtener una publicación por su ID
   obtenerPublicacionPorId: async function (req, res) {
     const { id } = req.params;
+
     try {
-      const publicacion = await db.Publicaciones.findByPk(id);
+      const publicacion = await db.Publicaciones.findByPk(id, {
+        include: [
+          {
+            model: db.Comentarios,
+            as: 'comentarios',
+            include: [
+              {
+                model: db.Usuarios,
+                as: 'usuario',
+                include: [
+                  {
+                    model: db.Alumnos,
+                    as: 'alumno',
+                    attributes: ['nombre', 'apellido']
+                  },
+                  {
+                    model: db.Docentes,
+                    as: 'docente',
+                    attributes: ['nombre', 'apellido']
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      });
+
       if (!publicacion) {
         return res.status(404).send('Publicación no encontrada.');
       }
-      res.render('noticia/noticia', { publicacion });
+
+      res.render('noticia/noticia', { publicacion, usuarioLogueado: req.session.usuarioLogueado });
     } catch (err) {
-      manejarError(res, err, "Error mostrando la publicación.");
+      console.error("Error fetching publication:", err);
+      res.status(500).send("Error fetching publication.");
     }
   },
 

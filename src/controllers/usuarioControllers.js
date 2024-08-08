@@ -100,6 +100,13 @@ const usuarioControllers = {
         break;
     }
   },
+  
+  logout: function (req, res) {
+    req.session.destroy(() => {
+      res.clearCookie('perfil');
+      res.redirect('/');
+    });
+  },
 
   renderPublicaciones: async function (req, res) {
     try {
@@ -243,11 +250,33 @@ const usuarioControllers = {
     }
   },
 
-  logout: function (req, res) {
-    req.session.destroy(() => {
-      res.clearCookie('perfil');
-      res.redirect('/');
-    });
+
+
+  // Método para agregar un comentario a una publicación
+  agregarComentario: async function (req, res) {
+    const { idPublicacion } = req.params;
+    const { comentario } = req.body;
+    const usuarioLogueado = req.session.usuarioLogueado;
+
+    if (!usuarioLogueado) {
+      return res.status(401).send('Usuario no autenticado.');
+    }
+
+    try {
+      const idUsuario = usuarioLogueado.idUsuario; 
+      const fechaComentario = new Date();
+
+      await db.Comentarios.create({
+        idPublicacion,
+        idUsuario,
+        fechaComentario,
+        comentario
+      });
+
+      res.redirect(`/publicacion/${idPublicacion}`);
+    } catch (err) {
+      manejarError(res, err, "Error agregando el comentario.");
+    }
   }
 };
 

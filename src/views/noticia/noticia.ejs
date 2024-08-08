@@ -16,26 +16,39 @@
         <section class="box-comentario">
           <h2>Comentarios</h2>
           <hr />
-          <form action="" method="POST">
+          <form action="/publicacion/comentar/<%= publicacion.idPublicacion %>" method="POST">
             <textarea
-              name="comment"
+              name="comentario"
               placeholder="Escribe tu comentario..."
+              required
             ></textarea>
-            <button type="">Inicia sesion para comentar</button>
-            <!--si esta conectado,  'Publicar' , sino 'Inicia sesión para comentar'-->
+            <% if (usuarioLogueado) { %>
+              <button type="submit">Publicar</button>
+            <% } else { %>
+              <button type="button" onclick="window.location.href='/usuario/login'">Inicia sesión para comentar</button>
+            <% } %>
           </form>
-          <div class="comentario">
-            <div class="comentario-nombre-fecha">
-              <p class="comentario-nombre">WOWOOW</p>
-              <p class="comentario-fecha">21 AGOSTO, 2023</p>
-            </div>
-            <p class="comentario-texto">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo
-              voluptatum saepe minus repudiandae aliquam? Ab consequatur iste
-              in. Sit veniam at amet in ipsa dicta consequuntur neque minus
-              saepe placeat.
-            </p>
-          </div>
+          <% if (publicacion.comentarios && publicacion.comentarios.length > 0) { %>
+            <% publicacion.comentarios.forEach(comentario => { %>
+              <div class="comentario">
+                <div class="comentario-nombre-fecha">
+                  <p class="comentario-nombre">
+                    <% if (comentario.usuario.alumno) { %>
+                      <%= comentario.usuario.alumno.nombre %> <%= comentario.usuario.alumno.apellido %>
+                    <% } else if (comentario.usuario.docente) { %>
+                      <%= comentario.usuario.docente.nombre %> <%= comentario.usuario.docente.apellido %>
+                    <% } %>
+                  </p>
+                  <p class="comentario-fecha"><%= new Date(comentario.fechaComentario).toLocaleDateString() %></p>
+                </div>
+                <p class="comentario-texto">
+                  <%= comentario.comentario %>
+                </p>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <p>No hay comentarios aún.</p>
+          <% } %>
         </section>
       </div>
     </main>

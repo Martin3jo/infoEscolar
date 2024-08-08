@@ -1,4 +1,3 @@
-
 /*3 Parametros (nombre de tabla,objeto literal con elementos de la tabla,)*/
 module.exports=(sequelize,dataTypes)=>{
 let alias = "Alumnos";
@@ -52,13 +51,8 @@ Alumno.associate = (models) => {
         foreignKey: 'idUsuario',
         as: 'usuario'
     });
-    Alumno.hasMany(models.PublicacionesAlumnos, {
-        foreignKey: 'idAlumno',
-        as: 'comentarios'
-    });
 };
 
 return Alumno;
 
 }
-    
