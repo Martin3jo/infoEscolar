@@ -40,6 +40,11 @@
                     <% } %>
                   </p>
                   <p class="comentario-fecha"><%= new Date(comentario.fechaComentario).toLocaleDateString() %></p>
+                  <% if (usuarioLogueado && (comentario.idUsuario === usuarioLogueado.idUsuario || usuarioLogueado.rol === 1)) { %>
+                    <a href="/publicacion/comentario/eliminar/<%= comentario.idComentario %>" class="delete-comment">
+                      <i class="fas fa-trash-alt"></i>
+                    </a>
+                  <% } %>
                 </div>
                 <p class="comentario-texto">
                   <%= comentario.comentario %>

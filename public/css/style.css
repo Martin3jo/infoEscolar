@@ -725,8 +725,9 @@ nav {
   display: flex;
   flex-direction: column;
   background-color: #FAFAFA;
-  padding: 15px;
+  padding: 20px;
   border-bottom-left-radius: 20px;
+  gap: 20px;
 }
 .main-noticia .container-noticia .box-comentario .comentario .comentario-nombre-fecha {
   gap: 20px;
@@ -742,6 +743,9 @@ nav {
 .main-noticia .container-noticia .box-comentario .comentario .comentario-nombre-fecha .comentario-fecha {
   color: #97989f;
   margin-bottom: 0;
+}
+.main-noticia .container-noticia .box-comentario .comentario .comentario-nombre-fecha a {
+  margin-left: auto;
 }
 .main-noticia .container-noticia .box-comentario .comentario .comentario-texto {
   overflow-wrap: break-word;

@@ -53,18 +53,17 @@ const usuarioControllers = {
               old: req.body,
             });
           } else {
-           
             switch (usuarios.rol.idRol) {
-              
               case 1:
                 const datosAdmin = usuarios.docente.dataValues;
-                req.session.usuarioLogueado = { ...datosAdmin, rol: usuarios.rol.idRol};
-                
+                req.session.usuarioLogueado = { ...datosAdmin, idUsuario: usuarios.idUsuario, rol: usuarios.rol.idRol };
+                console.log('Dato de usuario logueado:', req.session.usuarioLogueado);
                 res.redirect('/usuario/perfil');
                 break;
               case 2:
                 const datosAlumno = usuarios.alumno.dataValues;
-                req.session.usuarioLogueado = { ...datosAlumno, rol: usuarios.rol.idRol };
+                req.session.usuarioLogueado = { ...datosAlumno, idUsuario: usuarios.idUsuario, rol: usuarios.rol.idRol };
+                console.log('Datos del usuario logueado:', req.session.usuarioLogueado);
                 res.redirect('/usuario/perfil');
                 break;
               default:
@@ -81,9 +80,9 @@ const usuarioControllers = {
         });
     }
   },
+
   perfil: function (req, res) {
     if (!req.session.usuarioLogueado) {
-    
       return res.redirect('/login');
     }
     const currentYear = new Date().getFullYear();
@@ -100,7 +99,7 @@ const usuarioControllers = {
         break;
     }
   },
-  
+
   logout: function (req, res) {
     req.session.destroy(() => {
       res.clearCookie('perfil');
@@ -250,8 +249,6 @@ const usuarioControllers = {
     }
   },
 
-
-
   // Método para agregar un comentario a una publicación
   agregarComentario: async function (req, res) {
     const { idPublicacion } = req.params;
@@ -277,7 +274,46 @@ const usuarioControllers = {
     } catch (err) {
       manejarError(res, err, "Error agregando el comentario.");
     }
+  },
+
+ //Método para que un usuario pueda borrar su propio comentario y admin pueda borrar cualquier comentario
+  eliminarComentario: async function (req, res) {
+    const { idComentario } = req.params;
+    const usuarioLogueado = req.session.usuarioLogueado;
+
+    console.log('Usuario Logueado:', usuarioLogueado);
+    console.log('Usuario Logueado Rol:', usuarioLogueado ? usuarioLogueado.rol : 'No logueado');
+
+    if (!usuarioLogueado) {
+      return res.status(401).send('No autorizado.');
+    }
+
+    try {
+      const comentario = await db.Comentarios.findOne({
+        where: {
+          idComentario,
+          ...(usuarioLogueado.rol !== 1 && { idUsuario: usuarioLogueado.idUsuario })
+        },
+        include: {
+          model: db.Usuarios,
+          as: 'usuario'
+        }
+      });
+
+      if (!comentario) {
+        return res.status(404).send('Comentario no encontrado o no autorizado.');
+      }
+
+      await db.Comentarios.destroy({
+        where: { idComentario }
+      });
+
+      res.redirect(`/publicacion/${comentario.idPublicacion}`);
+    } catch (err) {
+      manejarError(res, err, "Error eliminando el comentario.");
+    }
   }
 };
+
 
 module.exports = usuarioControllers;

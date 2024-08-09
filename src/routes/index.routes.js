@@ -11,8 +11,11 @@ router.get('/categoria/:idCategoria', indexControllers.filtrarPorCategoria);
 router.get('/publicacion/:id', indexControllers.obtenerPublicacionPorId);
 // Ruta para agregar un comentario a una publicación
 router.post('/publicacion/comentar/:idPublicacion', usuarioControllers.agregarComentario);
+// Ruta para que un usuario pueda borrar su propio comentario
+router.get('/publicacion/comentario/eliminar/:idComentario', usuarioControllers.eliminarComentario);
 
 router.get('/pruebaSession', indexControllers.pruebaSession);
 router.get('/mostrarSession', indexControllers.mostrarNumeroSession);
+
 
 module.exports = router;
